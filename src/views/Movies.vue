@@ -8,16 +8,23 @@
 </template>
 
 <script>
-import movieService from '../services/MovieService.js'
+//import movieService from '../services/MovieService.js'
 export default {
   data() {
     return {
       movies: []
     }
   },
-   async created(){
-        this.movies = await movieService.getAll();
-    },
+  //  async created(){
+  //       this.movies = await movieService.getAll();
+  //   },
+   beforeRouteEnter(to, from, next) {
+     this.$store.dispatch('getMovies');
+     next();
+  }
+
+
+  
 }
 </script>
 

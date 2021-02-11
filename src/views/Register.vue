@@ -1,65 +1,46 @@
 <template>
   <div class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <form class="form-signin" @submit.prevent="register">
+      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
       <label for="email" class="sr-only">Email address</label>
       <input v-model = "credentials.email" type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
       <label for="password" class="sr-only">Password</label>
       <input v-model = "credentials.password" type="password" id="password" class="form-control" placeholder="Password" required>
+      <label for="password_confirmation" class="sr-only">Confirm password</label>
+      <input v-model = "credentials.password_confirmation" type="password" id="password_confirmation" class="form-control" placeholder="Password" required>
+     <label for="name" class="sr-only">Name</label>
+      <input v-model = "credentials.name" type="text" id="name" class="form-control" placeholder="Your name" required>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       <p class="mt-5 mb-3 text-muted">&copy; by Ranka</p>
     </form>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
 //import authService from '../services/AuthService.js'
 export default {
   data() {
     return {
-      credentials: {
-      email: "",
-      password: ""
-      }
+        credentials: {
+            email: "",
+            password: "",
+            password_confirmation: "",
+            name: "",
+        }
     }
     
   },
-  computed: {
-    ...mapGetters(['counter', 'doubledCounter', 'activeUser'])
-  },
   methods: {
-      async login() {
+      async register() {
         try {
-          await this.$store.dispatch('login', this.credentials)
-          alert('user logovan')
+          await this.$store.dispatch('register', this.credentials);
+          alert('user registrovan');
         } catch(error) {
-          console.log(error);
-          
+          console.log(error);    
         }
-
-        // const { user, token } = await authService.login(this.credentials);
-        // alert('Hello, ' + user.name);
-        // this.activeUser = user;
-
-        // this.$router.push('/my-profile')
-      },
-      incrementCounter() {
-        this.$store.commit('incrementCounter')
-      },
-      resetCounter() {
-        this.setCounter(0);
-        //this.$store.commit('setCounter', 0)
-      },
-
-      ...mapMutations(['incrementCounter', 'setCounter'])
-    },
-  // created() {
-  //   console.log(this.$store);
-  //  // console.log('getters je', this.$store.getters.counter);
-  // },
-
+    }
+}
 }
 </script>
 
