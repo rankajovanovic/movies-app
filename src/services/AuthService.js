@@ -1,8 +1,11 @@
-import http from './BaseService';
+// import http from './BaseService';
 
 
 class AuthService {
 
+    login() {
+
+    }
 
 }
 

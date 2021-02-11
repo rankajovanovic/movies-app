@@ -1,30 +1,89 @@
 <template>
-  <div class="container">
-      <h2>Login</h2>
-       <div class="d-flex justify-content-center align-items-center container">
-          <form class="row g-3">
-            <div class="col-auto">
-              <label for="email" class="visually-hidden">Email</label>
-              <input type="email" class="form-control" id="email" value="" placeholder="Email">
-            </div>
-            <div class="col-auto">
-              <label for="password" class="visually-hidden">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary mb-3">Login</button>
-            </div>
-          </form>
-      </div>
+  <div class="text-center">
+    <form class="form-signin" @submit.prevent="login">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="email" class="sr-only">Email address</label>
+      <input v-model = "formData.email" type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input v-model = "formData.password" type="password" id="password" class="form-control" placeholder="Password" required>
+      <!-- <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div> -->
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; by Ranka</p>
+    </form>
   </div>
 </template>
 
 <script>
+import authService from '../services/AuthService.js'
 export default {
-
+  data() {
+    return {
+      formData: {
+      email: "",
+      password: ""
+    }
+    }
+    
+  },
+  methods: {
+      login() {
+        authService.login(this.formData);
+      }
+    }
 }
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
 
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 </style>
