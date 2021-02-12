@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
     counter: 0,
     token: JSON.parse(localStorage.getItem('token')),
     activeUser: {},
-    isLoaded: false,
+    movies: []
   },
   getters,
   actions,

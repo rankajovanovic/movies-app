@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div v-for="movie in movies" :key="movie.id">
+    <h1>Movies</h1>
+    <div v-for="movie in this.$store.state.movies" :key="movie.id">
       <h3>{{movie.title}}</h3>
       <p>{{movie.director}}</p>
     </div>
@@ -19,8 +20,9 @@ export default {
   //       this.movies = await movieService.getAll();
   //   },
    beforeRouteEnter(to, from, next) {
-     this.$store.dispatch('getMovies');
-     next();
+      next(vm => {
+        vm.$store.dispatch('getMovies')
+      })
   }
 
 

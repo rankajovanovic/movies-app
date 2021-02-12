@@ -4,21 +4,11 @@ import axios from 'axios';
 class AuthService {
 
     async login(credentials) {
-        try {
-          const {data} = await http.post('/login', credentials);
-          if (data.token) {
-            const token = data.token;
-            localStorage.setItem('token', token);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-          }
-          return data;
-        } catch (e) {
-          return e;
-        }
-      }
+      const { data } = await http.post('/login', credentials);
+      return data;
+    }
 
-      async logout(token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ` + token;
+      async logout() {
         try {
           const {data} = await http.post('/logout');
           localStorage.removeItem('token');

@@ -2,13 +2,8 @@ import http from './BaseService';
 
 class MovieService {
     async getAll(){
-        try {
-            const response = await http.get('movies')    
-            return response.data     
-        } catch (error) {
-            console.log(error)
-        }
-        
+        const response = await http.get('movies')
+        return response.data
     }
 
    add(data) {

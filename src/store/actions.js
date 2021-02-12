@@ -1,10 +1,13 @@
 import authService from '../services/AuthService';
 import movieService from '../services/MovieService.js'
+import { store } from '.';
 
 export const actions = {
   
   async login(store, credentials) {
-    const { user, token } = await authService.login(credentials);
+    console.log('login action', { credentials})
+    const { user, token, ...data } = await authService.login(credentials);
+    console.log('login action, got response', { user, token , data})
     localStorage.setItem('token', JSON.stringify(token));
 
     store.commit('setActiveUser', user);
@@ -28,9 +31,10 @@ export const actions = {
   async register(store, credentials) {
     await authService.register(credentials);
   },
-  async getMovies(store) {
-    await movieService.getAll();
-    console.log(store);
+  async getMovies() {
+    const movies = await movieService.getAll();
+    store.commit('setMovies', movies);
+    console.log(movies);
     
   }
 };

@@ -3,4 +3,5 @@ export const getters = {
     //doubledCounter: (state) => state.counter * 2,
     //activeUser: (state) => state.activeUser,
     isAuthenticated: (state) => !!state.token,
+    movies: (state) => state.movies
   };

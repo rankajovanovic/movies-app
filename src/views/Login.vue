@@ -32,11 +32,12 @@ export default {
   methods: {
       async login() {
         try {
+          console.log('component >>> login, calling action', this.credentials)
           await this.$store.dispatch('login', this.credentials)
           alert('user logovan')
         } catch(error) {
           console.log(error);
-          
+          alert('Invalid credentials')
         }
 
         // const { user, token } = await authService.login(this.credentials);

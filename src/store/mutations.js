@@ -14,4 +14,8 @@ export const mutations = {
   setToken(state, token) {
     state.token = token;
   },
+  
+  setMovies(state, movies) {
+    state.movies = movies;
+  }
 };
